@@ -1,0 +1,82 @@
+router commands:
+
+enable
+erase startup-config
+reload
+
+enable
+
+conf t
+
+hostname router_r1
+
+no ip domain-lookup
+
+enable secret class
+
+line console 0
+password cisco
+login
+line vty 0 15
+password cisco
+login
+exit
+
+service password-encryption
+
+banner motd $Unauthorized access prohibited!$
+
+int g0/0
+ip address 192.168.0.1 255.255.255.0
+ipv6 address 2001:db8:acad::1/64
+ipv6 address fe80::1 link-local
+no shut
+
+int g0/1
+ip address 192.168.1.1 255.255.255.0
+ipv6 address 2001:db8:acad:1::1/64
+ipv6 address fe80::1 link-local
+no shut
+
+int 0/0
+description Connected to Host PC-B
+int g0/1
+description Connected to f0/5 on S1
+
+exit 
+
+ipv6 unicast-routing
+
+exit
+copy running-config startup-config
+
+Router# clock set 10:50:00 Mar 10 2021 ????
+
+PCB ipconfig
+ping .... 
+
+
+==================
+switch
+
+enable
+erase startup-config
+reload
+
+enable 
+conf t
+hostname switch_s1
+
+no ip domain-lookup
+
+int vlan 1
+ip address 192.168.1.2 255.255.255.0
+no sh
+exit
+
+ip default-gateway 192.168.1.1
+exit
+
+copy running-config startup-config
+
+ping .... 
